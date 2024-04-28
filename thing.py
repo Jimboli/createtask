@@ -1,12 +1,12 @@
 def InputLoop():
-    a = True
+    start = True
     InputFile = input('Enter file name to process: ')
 
-    while a:
+    while start:
         try:
             InputFile = InputFile.strip()
             open(InputFile, 'r')
-            a = False
+            start = False
         except:
             print(f"File name {InputFile} doesn't exist. ")
             print('Please enter correct file name.')
@@ -15,13 +15,11 @@ def InputLoop():
     return InputFile
 
 
-def FunctionParser():
+def FunctionParser(FileDictionary):
     FileName = InputLoop()
     print('Here is a list of top 5 email users: ')
     print('====================================')
     OpenFile = open(FileName, 'r')
-
-    FileDictionary = dict()
 
     for line in OpenFile:
         if line.startswith('From'):
@@ -44,7 +42,8 @@ def FunctionParser():
 
 loop = 'y'
 while loop == 'y':
-    FunctionParser()
+    Empty = {}
+    FunctionParser(Empty)
     print('====================================')
     loop = input('Do you want to try another file? (y or n)')
 
